@@ -1,5 +1,6 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
+  // Click listener for devoured btn to change devoured state
   $(".change-devoured").on("click", function(event) {
     var id = $(this).data("id");
     var newDevour = $(this).data("newdevour");
@@ -9,7 +10,7 @@ $(function() {
       devoured: newDevour
     };
 
-    // Send the PUT request.
+    // PUT request to change devoured state
     $.ajax("/api/sushi/" + id, {
       type: "PUT",
       data: newDevouredState
@@ -22,6 +23,7 @@ $(function() {
     );
   });
 
+  // Click listener to add new sushi
   $(".create-form").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
@@ -30,7 +32,7 @@ $(function() {
       sushi_name: $("#sushi").val().trim()
     };
 
-    // Send the POST request.
+    // POST request to add sushi
     $.ajax("/api/sushi", {
       type: "POST",
       data: newSushi

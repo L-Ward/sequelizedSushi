@@ -1,47 +1,39 @@
-var express = require("express");
-
-var router = express.Router();
-var sushi = require("../models/sushi.js");
+var db = require("../models");
 
 // Routes
-router.get("/", function(req, res) {
-    sushi.selectAll(function(data) {
+module.exports = function (app) {
+  // Route to get all sushi
+  app.get("/", function (req, res) {
+    db.Sushi.findAll({ raw: true })
+      .then(function (dbSushi) {
         var sushiObject = {
-            sushi: data
-
+          sushi: dbSushi
         };
-        console.log(sushiObject)
         res.render("index", sushiObject);
+      });
+  });
+
+  // Route to post new sushi input
+  app.post("/api/sushi", function (req, res) {
+    db.Sushi.create(req.body)
+      .then(function (dbSushi) {
+        res.json({ id: dbSushi.insertId })
+      })
+  });
+
+  // Route to adjust sushi devoured boolean
+  app.put("/api/sushi/:id", function (req, res) {
+    console.log(req);
+    db.Sushi.update(
+      req.body,
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    )
+    .then(function (dbSushi) {
+      res.json(dbSushi);
     });
 });
-
-router.post("/api/sushi", function(req, res) {
-    sushi.insertOne([
-      "sushi_name"
-    ], [
-      req.body.sushi_name
-    ], function(result) {
-      // Send back the ID
-      res.json({ id: result.insertId });
-    });
-  });
-
-  router.put("/api/sushi/:id", function(req, res) {
-    var condition = "id = " + req.params.id;
-  
-    console.log("condition", condition);
-  
-    sushi.updateOne({
-      devoured: req.body.devoured
-    }, condition, function(result) {
-      if (result.changedRows == 0) {
-        // If no rows were changed, then the ID must not exist, so 404
-        return res.status(404).end();
-      } else {
-        res.status(200).end();
-      }
-    });
-  });
-
-// Export routes for server.js to use.
-module.exports = router;
+};
