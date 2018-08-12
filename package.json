@@ -1,0 +1,18 @@
+{
+  "name": "sushi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:L-Ward/sushi.git",
+  "author": "L-Ward <noreply>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.16.0",
+    "sequelize": "^4.38.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

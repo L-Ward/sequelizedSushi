@@ -1,0 +1,53 @@
+    /* #E29E23; */
+
+#body-style{
+    background-color: #195658;
+    color: #E5E1D1;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;    
+}
+
+.header {
+    margin: 5px, 0px, 20px, 0px;
+}
+
+.menu {
+    margin: 5px;
+}
+
+.more-sushi {
+    margin: 5px;
+}
+
+.change-devoured {
+    margin: 2px;
+}
+
+.shadow {
+   background-color: #2D797D;
+   margin: 2px; 
+}
+
+.pill {
+    background-color: #E29E23;
+    color: #E5E1D1;
+}
+.pill:hover{
+    background-color: #E29E23;
+    color: #b53C1B;
+    border-color: #b53C1B;
+}
+
+.btn {
+    background-color: #E29E23;
+    color: #E5E1D1;
+}
+.btn:hover{
+    background-color: #E29E23;
+    color: #b53C1B;
+    border-color: #b53C1B;
+}
